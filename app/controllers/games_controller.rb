@@ -2,11 +2,11 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    render json: @games
   end
 
   def new
     @game = Game.new
-    @game.state = ["X", "", "", "", "", "", "", "", ""]
   end
 
   def create
@@ -16,10 +16,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    respond_to do |format|
-      format.html { render :show }
-      format.json { render json: @game }
-    end
+    render json: @game
   end
 
   def edit
@@ -27,6 +24,7 @@ class GamesController < ApplicationController
   end
 
   def update
+    render json: @game
   end
 
   private
